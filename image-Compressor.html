@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor Pro - Optimize & Compress Images Online</title>
+    <meta name="description" content="Free online image compressor tool. Reduce image file size while maintaining quality. Supports JPEG, PNG, and WEBP formats. Perfect for web optimization and faster loading.">
+    <meta name="keywords" content="image compressor, optimize images, reduce image size, web optimization, JPEG compressor, PNG compressor">
+    
+    <!-- SEO Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Image Compressor Pro",
+        "applicationCategory": "Multimedia",
+        "operatingSystem": "Web",
+        "description": "Online tool for compressing and optimizing images",
+        "offers": {
+            "@type": "Offer",
+            "price": "0"
+        }
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID"
+    crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h1 class="text-3xl font-bold text-gray-900">Image Compressor Pro</h1>
+            <p class="mt-2 text-gray-600">Optimize your images for web with real-time compression</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid md:grid-cols-4 gap-8">
+            <!-- Ad Slot 1 -->
+            <div class="md:col-span-1">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                    data-ad-slot="YOUR_AD_SLOT_ID_1"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+            </div>
+
+            <!-- Compression Tool -->
+            <div class="md:col-span-2">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="space-y-6">
+                        <!-- File Upload -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+                            <input type="file" id="imageInput" accept="image/*" 
+                                   class="block w-full text-sm text-gray-500
+                                          file:mr-4 file:py-2 file:px-4
+                                          file:rounded-full file:border-0
+                                          file:text-sm file:font-semibold
+                                          file:bg-blue-50 file:text-blue-700
+                                          hover:file:bg-blue-100">
+                        </div>
+
+                        <!-- Compression Controls -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Compression Level</label>
+                                <input type="range" id="compressionLevel" min="0" max="1" step="0.1" value="0.7" 
+                                       class="w-full mt-2 range-slider">
+                                <div class="flex justify-between text-sm text-gray-500 mt-1">
+                                    <span>Low</span>
+                                    <span>High</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Output Quality</label>
+                                <select id="qualityPreset" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                    <option value="0.9">High Quality (90%)</option>
+                                    <option value="0.7" selected>Balanced (70%)</option>
+                                    <option value="0.5">Medium (50%)</option>
+                                    <option value="0.3">High Compression (30%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Preview Section -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-700 mb-2">Original Image</h3>
+                                <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                                    <img id="originalPreview" class="object-contain w-full h-full">
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-700 mb-2">Compressed Preview</h3>
+                                <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                                    <canvas id="compressedPreview" class="w-full h-full"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex gap-4">
+                            <button onclick="compressImage()" 
+                                    class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-md 
+                                           hover:bg-blue-700 transition-colors">
+                                Compress Now
+                            </button>
+                            <button onclick="downloadImage()" id="downloadBtn" disabled
+                                    class="flex-1 bg-green-600 text-white px-6 py-3 rounded-md 
+                                           hover:bg-green-700 transition-colors disabled:opacity-50">
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ad Slot 2 -->
+            <div class="md:col-span-1">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-YOUR_AD_CLIENT_ID"
+                    data-ad-slot="YOUR_AD_SLOT_ID_2"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+    </main>
+
+    <!-- Performance Metrics -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white p-6 rounded-lg shadow-md grid grid-cols-2 gap-4 text-center">
+            <div>
+                <p class="text-sm text-gray-500">Original Size</p>
+                <p id="originalSize" class="text-xl font-semibold">-</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Compressed Size</p>
+                <p id="compressedSize" class="text-xl font-semibold">-</p>
+            </div>
+        </div>
+    </section>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+    <script>
+        let originalImage = null;
+        let compressedBlob = null;
+        const canvas = document.getElementById('compressedPreview');
+        const ctx = canvas.getContext('2d');
+
+        // Initialize AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+
+        // Image Upload Handler
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            document.getElementById('originalSize').textContent = 
+                `${(file.size / 1024).toFixed(2)} KB`;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                originalImage = new Image();
+                originalImage.onload = function() {
+                    canvas.width = this.naturalWidth;
+                    canvas.height = this.naturalHeight;
+                    document.getElementById('originalPreview').src = event.target.result;
+                };
+                originalImage.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Compression Function
+        async function compressImage() {
+            if (!originalImage) return alert('Please upload an image first');
+            
+            const quality = parseFloat(document.getElementById('qualityPreset').value);
+            const compressionLevel = parseFloat(document.getElementById('compressionLevel').value);
+
+            // Draw image to canvas
+            ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
+
+            // Convert to compressed format
+            canvas.toBlob(function(blob) {
+                compressedBlob = blob;
+                document.getElementById('compressedSize').textContent = 
+                    `${(blob.size / 1024).toFixed(2)} KB`;
+                document.getElementById('downloadBtn').disabled = false;
+                
+                // Show compressed preview
+                const url = URL.createObjectURL(blob);
+                canvas.getContext('2d').drawImage(originalImage, 0, 0);
+            }, 'image/jpeg', quality);
+        }
+
+        // Download Handler
+        function downloadImage() {
+            if (!compressedBlob) return;
+            
+            const link = document.createElement('a');
+            link.download = `compressed_${Date.now()}.jpg`;
+            link.href = URL.createObjectURL(compressedBlob);
+            link.click();
+            
+            // Track download event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'download', {
+                    'event_category': 'compression',
+                    'event_label': 'image_download'
+                });
+            }
+        }
+
+        // Initialize AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Performance Optimization -->
+    <script>
+        // Lazy loading for images
+        if ('loading' in HTMLImageElement.prototype) {
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.loading = "lazy";
+            });
+        }
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
